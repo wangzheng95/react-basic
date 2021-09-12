@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <!-- 
+    1.回调形式的ref中回调调用次数的问题
+
+   -->
+  <div id="test"></div>
+
+  <script src="../js/react.development.js"></script>
+  <script src="../js/react-dom.development.js"></script>
+  <script src="../js/babel.min.js"></script>
+  <script src="../js/prop-types.js"></script>
+
+  <script type="text/babel">
+    class Demo extends React.Component {
+      state = {isHot: true}
+      show1 = () => {
+        alert(this.input1.value)
+      }
+      show2 = () => {
+        alert(this.input2.value)
+      }
+      changeWeather = () => {
+        this.setState(
+          {
+            isHot:!this.state.isHot
+          }
+        )
+      }
+      alertInput = (c) => {
+        this.input1 = c
+        console.log('111');
+      }
+      render () {
+        return (
+          <div>
+            <h1>今天天气很{this.state.isHot?'炎热':'凉爽'}</h1>
+            {/*<input type="text" ref={ element => {
+              this.input1 = element;
+              console.log('1111');
+            }}/>&nbsp;*/}
+            <input type="text" ref={this.alertInput}/>&nbsp;
+            <button onClick={this.show1}>点我弹出第一个输入框的内容</button>&nbsp; 
+            {/*<input onBlur={this.show2} type="text" ref={element => this.input2 = element} />*/}
+            <button onClick={this.changeWeather}>点我改变天气</button>
+          </div>
+        )
+      }
+    }
+    ReactDOM.render(<Demo/>, document.getElementById('test'))
+  </script>
+</body>
+</html>

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>hello react</title>
+  <style>
+    .color{
+      background-color: pink;
+    }
+  </style>
+</head>
+<body>
+  <!-- 
+  jsx语法规则:
+    1.定义虚拟dom时，不要用引号
+    2.标签中混入js表达式时要用{},引号可有可不有
+    3.样式的类名置顶不要用class，要用className
+    4.内联样式，要用style={{key:value}}的形式去写。不加引号，使用驼峰写法
+    5.只有一个根标签
+    6.标签必须闭合，或者自结束
+    7.标签首字母
+      (1).若小写字母开头，则将该标签转为html中同名元素，若html中无该标签对应的同名元素，则报错,但是页面会渲染
+      (2).若大写字母开头，react就去渲染对应的组件。若组件没有定义，则报错。页面直接不渲染了
+   -->
+
+  <div id="test"></div>
+
+  <script src="../js/react.development.js"></script>
+  <script src="../js//react-dom.development.js"></script>
+  <script src="../js/babel.min.js"></script>
+
+  <script type="text/babel">
+  const id = 'atguigu'
+  const text = 'hello,rEact'
+    const VDOM = (
+      <div>
+        <h1 id="{id}" className="color" style={{fontSize: '38px'}}>
+          <span>{text}</span>  
+          <input />
+          <good />
+        </h1>
+        </div>
+        // <Good />
+        // <input />
+    )
+    ReactDOM.render(VDOM,document.getElementById('test'))
+  </script>
+</body>
+</html>
