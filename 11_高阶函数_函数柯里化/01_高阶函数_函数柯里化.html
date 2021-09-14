@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <!-- 
+    高阶函数：如果一盒函数符合下面2个规范中的任何一个，name这个函数就是高阶函数
+      1.若A函数接收的参数是一个函数，那么A就可以称之为高阶函数
+      2.若A函数，调用的返回值依然是一个函数，那么A就可以称之为高阶函数
+    常见的高阶函数有哪些？
+      1.Promise
+      2.setTimeout
+      3.arr.map
+    
+    函数的课里化：通过函数调用继续返回函数的方式，实现多次接收参数最后统一出来的函数编码形式
+
+   -->
+
+    <div id="test"></div>
+    <script src="../js/react.development.js"></script>
+    <script src="../js/react-dom.development.js"></script>
+    <script src="../js/babel.min.js"></script>
+    <script src="../js/prop-types.js"></script>
+
+    <script type="text/babel">
+      class Person extends React.Component {
+        state = {
+          username: '',
+          password: ''
+        }
+        saveForm = (dataType) => {
+          return (e) => {
+            this.setState({
+              [dataType]: e.target.value
+            })
+          }
+        }
+        render () {
+          return (
+            <form action="#">
+              用户名：<input onChange={this.saveForm('username')} type="text" />
+              密码：<input onChange={this.saveForm('password')} type="password" />
+              <button onClick={this.handleLogin}>登录</button>
+            </form>
+          )
+        }
+        // saveData1 = (e) => {
+        //   this.setState({
+        //     username: e.target.value
+        //   })
+        // }
+        // showData2 = (e) => {
+        //   this.setState({
+        //     password: e.target.value
+        //   })
+        // }
+        handleLogin = () => {
+          alert(`用户名：${this.state.username},密码：${this.state.password}`)
+        }
+        // render () {
+        //   return (
+        //    <form action="#">
+        //     用户名：<input onChange={this.saveData1} type="text" />
+        //     密码：<input onChange={this.showData2} type="password" />
+        //     <button onClick={this.handleLogin}>登录</button>
+        //   </form>
+        //   )
+        // }
+      }
+      ReactDOM.render(<Person/>,document.getElementById('test'))
+    </script>
+  </body>
+</html>
