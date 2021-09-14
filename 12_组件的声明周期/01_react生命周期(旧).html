@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <!-- 
+    1.constructor                   1.conponentWillReciveProps ---- 第一次不会渲染，只有在接受到新的props时回触发
+    2.componentWillMount            2.shouldComponentUpdate ---- 触发动作setState()
+                                    3.componentWillUpdate ---- 触发动作 forceUpdata()
+    3.render                        4.render
+    4.componentDidMount             5.componentDidUpdate
+    5.componentWillUnmount          6.componentWillUnmount
+
+    1.初始化阶段
+      1.constructor()
+      2.componentWillMOunt()
+      3.render()
+      4.componentDidMount()  ====> 常用。一般做一些初始化的事情，例如开启定时器、发送网络请求、订阅消息
+    2.更新阶段：由组件内部this.setState() 或者 this.forceState() 或者 render触发
+      1.componentReiveProps()
+      2.shouldComponentUpdate()
+      3.componentWillUpdate()
+      4.render()  ====>  必用
+      5.componentDidUpdate()
+    3.卸载阶段：由ReactDOM.unmountComponentAtNode()触发
+      1.componentWillUnmount()  ====> 常用。一般做一些收尾的事，例如：关闭定时器、取消订阅消息
+   -->
+</body>
+</html>
