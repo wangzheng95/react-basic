@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <!-- 
+    1.通过onXxx指定事件处理函数（注意大小写）
+      a.React中使用的事自定义（合成）事件，而不是使用原生DOM事件---为了更好地兼容性
+      b.React中的事件是通过事件委托方式处理的（委托给组件最外层元素）---为了更高效
+    2.通过event.target得到发生事件的DOM元素对象---不要过度使用ref
+   -->
+  <div id="test"></div>
+
+  <script src="../js/react.development.js"></script>
+  <script src="../js/react-dom.development.js"></script>
+  <script src="../js/babel.min.js"></script>
+  <script src="../js/prop-types.js"></script>
+
+  <script type="text/babel">
+    class Demo extends React.Component {
+      myRef1 = React.createRef()
+      myRef2 = React.createRef()
+      show1 = () => {
+        alert(this.myRef1.current.value);
+      }
+      show2 = (event) => {
+        console.log(event.target.value);
+        // alert(this.myRef2.current.value)
+      }
+      render () {
+        return (
+          <div>
+            <input type="text" ref={this.myRef1}/>&nbsp;
+            <button onClick={this.show1}>点我弹出第一个输入框的内容</button>&nbsp; 
+            <input onBlur={this.show2} type="text" />
+          </div>
+        )
+      }
+    }
+    ReactDOM.render(<Demo/>, document.getElementById('test'))
+  </script>
+</body>
+</html>
